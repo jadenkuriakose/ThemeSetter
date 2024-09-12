@@ -1,25 +1,26 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark')
+
+    useEffect(() => {
+      document.body.className = theme;
+      localStorage.setItem('theme', theme);
+    }, [theme])
+    
+    const ToggleTheme = () => {
+      setTheme(theme ==='dark' ? 'light' : 'dark');
+    };
+
+    return (
+      <div class='container'>
+        <input type='checkbox' id='check' onClick={ToggleTheme}></input>
+          <label for =  '' class = 'button'></label>
+      </div>
+    )
+  
+    
+  }
 
 export default App;
